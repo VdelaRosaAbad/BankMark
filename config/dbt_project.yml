@@ -1,0 +1,67 @@
+name: 'bank_marketing'
+version: '1.0.0'
+config-version: 2
+
+profile: 'bank_marketing'
+
+model-paths: ["dbt/models"]
+analysis-paths: ["dbt/analyses"]
+test-paths: ["dbt/tests"]
+seed-paths: ["dbt/seeds"]
+macro-paths: ["dbt/macros"]
+snapshot-paths: ["dbt/snapshots"]
+
+target-path: "dbt/target"
+clean-targets:
+  - "dbt/target"
+  - "dbt/dbt_packages"
+
+models:
+  bank_marketing:
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: view
+    marts:
+      +materialized: table
+
+vars:
+  # Variables del proyecto
+  project_id: "BankMarketingVada"
+  dataset_raw: "raw_data"
+  dataset_staging: "staging"
+  dataset_marts: "marts"
+  
+  # Configuración de KPIs
+  conversion_threshold: 0.05  # 5% tasa mínima de conversión
+  quality_threshold: 0.95     # 95% calidad mínima de datos
+
+seeds:
+  bank_marketing:
+    +column_types:
+      age: int64
+      job: string
+      marital: string
+      education: string
+      default: string
+      housing: string
+      loan: string
+      contact: string
+      month: string
+      day_of_week: string
+      duration: int64
+      campaign: int64
+      pdays: int64
+      previous: int64
+      poutcome: string
+      emp_var_rate: float64
+      cons_price_idx: float64
+      cons_conf_idx: float64
+      euribor3m: float64
+      nr_employed: float64
+      y: string
+
+tests:
+  bank_marketing:
+    +store_failures: true
+    +severity: warn
