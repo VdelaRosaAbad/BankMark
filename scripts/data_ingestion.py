@@ -2,6 +2,7 @@
 """
 Data Ingestion Script for Bank Marketing Dataset
 Downloads data from UCI repository and loads into BigQuery
+FINAL VERSION - Bulletproof with all corrections
 """
 
 import pandas as pd
@@ -35,7 +36,7 @@ class BankMarketingDataIngestion:
             url = "https://archive.ics.uci.edu/ml/machine-learning-databases/00222/bank.zip"
             
             # Descargar datos
-            response = requests.get(url)
+            response = requests.get(url, timeout=30)
             response.raise_for_status()
             
             # Guardar archivo temporal
@@ -72,11 +73,12 @@ class BankMarketingDataIngestion:
             "has_marital": 'marital' in df.columns,
             "has_education": 'education' in df.columns,
             "has_default": 'default' in df.columns,
+            "has_balance": 'balance' in df.columns,
             "has_housing": 'housing' in df.columns,
             "has_loan": 'loan' in df.columns,
             "has_contact": 'contact' in df.columns,
+            "has_day": 'day' in df.columns,
             "has_month": 'month' in df.columns,
-            "has_day_of_week": 'day_of_week' in df.columns,
             "has_duration": 'duration' in df.columns,
             "has_campaign": 'campaign' in df.columns,
             "has_pdays": 'pdays' in df.columns,
@@ -92,8 +94,8 @@ class BankMarketingDataIngestion:
         # Verificar validaciones críticas
         critical_validations = [
             "total_rows", "has_age", "has_job", "has_marital", "has_education",
-            "has_default", "has_housing", "has_loan", "has_contact", "has_month",
-            "has_day_of_week", "has_duration", "has_campaign", "has_pdays",
+            "has_default", "has_balance", "has_housing", "has_loan", "has_contact", 
+            "has_day", "has_month", "has_duration", "has_campaign", "has_pdays",
             "has_previous", "has_poutcome", "has_y"
         ]
         
@@ -136,9 +138,9 @@ class BankMarketingDataIngestion:
             # Crear schema dinámicamente basado en las columnas reales
             schema = []
             for col in df.columns:
-                if col in ['age', 'duration', 'campaign', 'pdays', 'previous']:
+                if col in ['age', 'duration', 'campaign', 'pdays', 'previous', 'day']:
                     schema.append(bigquery.SchemaField(col, "INTEGER"))
-                elif col in ['emp.var.rate', 'cons.price.idx', 'cons.conf.idx', 'euribor3m', 'nr.employed']:
+                elif col in ['balance']:
                     schema.append(bigquery.SchemaField(col, "FLOAT"))
                 else:
                     schema.append(bigquery.SchemaField(col, "STRING"))
