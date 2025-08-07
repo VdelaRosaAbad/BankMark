@@ -1,10 +1,10 @@
 # Data Processing
-pandas>=2.1.0
+pandas>=2.0.0
 numpy>=1.24.0
 requests>=2.31.0
 
 # BigQuery Integration
-google-cloud-bigquery>=4.0.0
+google-cloud-bigquery>=3.11.0
 google-cloud-storage>=2.10.0
 google-auth>=2.23.0
 
