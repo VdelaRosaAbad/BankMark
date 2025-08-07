@@ -1,7 +1,8 @@
 # Data Processing
-pandas==2.2.2                                                                                                                            │
-numpy==1.26.4  
-requests==2.31.0
+pandas==2.2.2
+numpy>=1.26.4
+requests>=2.31.0
+
 
 # BigQuery Integration
 google-cloud-bigquery==3.11.4
@@ -45,4 +46,5 @@ httpx==0.24.1
 
 # JSON Processing
 jsonschema==4.19.0
+
 
