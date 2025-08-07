@@ -1,4 +1,4 @@
-# Bank Marketing Analytics Engineering Project
+# Bank Marketing
 
 ## 📋 Descripción del Proyecto
 
@@ -244,10 +244,11 @@ GROUP BY age_group, job_category
 ## 📞 Soporte
 
 Para soporte técnico o preguntas sobre el proyecto:
-- **Email**: jguerrero@deacero.com
+- **Email**: victordelarosa91@hotmail.com
 - **Issues**: GitHub Issues del repositorio
 - **Documentación**: Carpeta `docs/`
 
 ---
 
 **Desarrollado con ❤️ usando Cloud Shell y GitHub**
+
