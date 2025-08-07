@@ -26,7 +26,7 @@ email-validator==2.0.0
 functions-framework==3.4.0
 
 # Data Quality
-great-expectations==0.17.23
+#great-expectations==0.17.23
 pydantic==2.3.0
 
 # Utilities
@@ -46,6 +46,7 @@ httpx==0.24.1
 
 # JSON Processing
 jsonschema==4.19.0
+
 
 
 
