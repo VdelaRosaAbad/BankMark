@@ -13,7 +13,7 @@ from google.cloud.exceptions import NotFound
 import os
 from datetime import datetime
 import sys
-
+project_id_gcp="crafty-biplane-257500"
 # Configurar logging
 logging.basicConfig(
     level=logging.INFO,
@@ -22,7 +22,7 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 class BankMarketingDataIngestion:
-    def __init__(self, project_id="BankMarketingVada", dataset_id="raw_data"):
+    def __init__(self, project_id=project_id_gcp, dataset_id="raw_data"):
         self.project_id = project_id
         self.dataset_id = dataset_id
         self.client = bigquery.Client(project=project_id)
@@ -209,7 +209,7 @@ def main():
     """Main function"""
     try:
         # Configurar proyecto desde variables de entorno
-        project_id = os.getenv("GCP_PROJECT_ID", "BankMarketingVada")
+        project_id = os.getenv("GCP_PROJECT_ID", project_id_gcp)
         
         # Ejecutar ingesta
         ingestion = BankMarketingDataIngestion(project_id=project_id)
@@ -228,3 +228,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
