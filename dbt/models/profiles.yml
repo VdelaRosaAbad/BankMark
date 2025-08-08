@@ -4,7 +4,7 @@ bank_marketing:
     prod:
       type: bigquery
       method: service-account
-      project: BankMarketingVada
+      project: crafty-biplane-257500
       dataset: bank_marketing
       location: US
       threads: 4
@@ -16,7 +16,7 @@ bank_marketing:
     dev:
       type: bigquery
       method: service-account
-      project: BankMarketingVada
+      project: crafty-biplane-257500
       dataset: bank_marketing_dev
       location: US
       threads: 4
@@ -28,7 +28,7 @@ bank_marketing:
     test:
       type: bigquery
       method: service-account
-      project: BankMarketingVada
+      project: crafty-biplane-257500
       dataset: bank_marketing_test
       location: US
       threads: 4
@@ -36,3 +36,4 @@ bank_marketing:
       priority: interactive
       retries: 1
       keyfile: /path/to/service-account.json  # Configurar en Cloud Shell
+
